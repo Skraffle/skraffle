@@ -72,7 +72,6 @@ sb.auth.onAuthStateChange(async (_, session) => {
 signupBtn.onclick = async () => {
     const email = emailInput.value.trim();
     const password = passwordInput.value;
-
     const username = usernameInput.value.trim().toLowerCase();
     const display_name = displayNameInput.value.trim();
 
@@ -81,24 +80,20 @@ signupBtn.onclick = async () => {
         return;
     }
 
-    const { data, error } = await sb.auth.signUp({
+    const { error } = await sb.auth.signUp({
         email,
-        password
+        password,
+        options: {
+            data: {
+                username,
+                display_name
+            }
+        }
     });
 
     if (error) return alert(error.message);
 
-    if (data.user) {
-        const { error: pErr } = await sb.from("profiles").insert([{
-            id: data.user.id,
-            username,
-            display_name
-        }]);
-
-        if (pErr) return alert(pErr.message);
-    }
-
-    alert("Check your email.");
+    alert("Check your email to verify your account!");
 };
 
 
