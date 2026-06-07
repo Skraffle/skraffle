@@ -1,79 +1,109 @@
-<!--EARLY WORK IN PROGRESS - BAREBONES-->
-<!--DRAFT BY AUVREIL, 12:21 AM 6/5/2026-->
-
-<!--note to publish by june 7th on repo w supa and cldf pages hooked-->
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skraffle | Year-Round Art Exchange</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
-    <style>
-        body { padding: 20px; max-width: 800px; margin: 0 auto; }
-        .hidden { display: none; }
-        .attack-card { border: 1px solid #ccc; padding: 15px; margin-bottom: 15px; border-radius: 8px; }
-        .attack-card img { max-width: 100%; height: auto; border-radius: 4px; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skraffle | Year-Round Art Exchange</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+
+<style>
+body {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.attack-card {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+}
+
+.attack-card img {
+    max-width: 100%;
+    border-radius: 6px;
+}
+</style>
 </head>
+
 <body>
 
-    <header>
-        <nav>
-            <ul><li><strong>✏🎨 Skraffle</strong></li></ul>
-            <ul>
-                <li id="user-status">Loading...</li>
-                <li><button id="logout-btn" class="secondary hidden">Logout</button></li>
-            </ul>
-        </nav>
-    </header>
+<header>
+<nav>
+<ul><li><strong>✏️ Skraffle</strong></li></ul>
+<ul>
+<li id="user-status">Loading...</li>
+<li><button id="logout-btn" class="secondary hidden">Logout</button></li>
+</ul>
+</nav>
+</header>
 
-    <main>
-        <section id="auth-section" class="hidden">
-            <h2>Welcome to Skraffle</h2>
-            <p>A cozy, year-round art exchange built for the artists!</p>
-            <form id="auth-form">
-                <label for="email">Email</label>
-                <input type="email" id="email" required>
-                
-                <label for="password">Password</label>
-                <input type="password" id="password" required>
-                
-                <div class="grid">
-                    <button type="submit" id="login-btn">Log In</button>
-                    <button type="button" id="signup-btn" class="secondary">Sign Up</button>
-                </div>
-            </form>
-        </section>
+<main>
 
-        <section id="app-section" class="hidden">
-            <article>
-                <h3>Submit an Attack / Trade</h3>
-                <form id="attack-form">
-                    <label for="title">Piece Title</label>
-                    <input type="text" id="title" placeholder="e.g., Attack for Auvreil!" required>
+<section id="auth-section">
+<h2>Login / Signup</h2>
 
-                    <label for="image-url">Image URL (For now, use an external link like Imgur or Discord image link)</label>
-                    <input type="url" id="image-url" placeholder="https://example.com/your-art.png" required>
+<form id="auth-form">
 
-                    <label for="points">Points Worth</label>
-                    <input type="number" id="points" value="10" required>
+<label>Email</label>
+<input type="email" id="email" required>
 
-                    <button type="submit">Post to the Feed</button>
-                </form>
-            </article>
+<label>Username</label>
+<input type="text" id="username" minlength="3" maxlength="20" required>
 
-            <h2>Recent Activity</h2>
-            <div id="feed">
-                <p>No attacks posted yet. Be the first!</p>
-            </div>
-        </section>
-    </main>
+<label>Display Name</label>
+<input type="text" id="display-name" maxlength="50" required>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="app.js"></script>
+<label>Password</label>
+<input type="password" id="password" required>
+
+<div class="grid">
+<button type="submit">Log In</button>
+<button type="button" id="signup-btn" class="secondary">Sign Up</button>
+</div>
+
+</form>
+</section>
+
+<!-- APP -->
+<section id="app-section" class="hidden">
+
+<article>
+<h3>Post Attack</h3>
+
+<form id="attack-form">
+
+<label>Title</label>
+<input type="text" id="title" required>
+
+<label>Image URL</label>
+<input type="url" id="image-url" required>
+
+<label>Points</label>
+<input type="number" id="points" value="10" required>
+
+<button type="submit">Post</button>
+
+</form>
+</article>
+
+<h2>Feed</h2>
+<div id="feed">
+<p>No posts yet.</p>
+</div>
+
+</section>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="app.js"></script>
+
 </body>
 </html>
